@@ -1,6 +1,6 @@
-# Airlink Aviation Spares — Marketing Website
+# AI Aviation Supplies — Marketing Website
 
-A premium, responsive marketing website for **Airlink Airplanes Spare Parts Trading L.L.C.**, a UAE-based aviation supply company. The content, branding and product catalogue are sourced from the company's official profile deck.
+A premium, responsive marketing website for **AI Aviation Supplies Pvt. Ltd.**, an India-based aviation supply company headquartered in Thane, Maharashtra, with reach into the UAE, UK and Denmark. The content, branding and product catalogue are sourced from the company's official profile deck.
 
 ## Tech Stack
 
@@ -8,11 +8,10 @@ A premium, responsive marketing website for **Airlink Airplanes Spare Parts Trad
 - **Vite 7** — build tooling
 - **Tailwind CSS 4** — styling
 - **lucide-react** — icons
-- **Netlify Forms** — serverless contact-form handling (no backend/database required)
 
-## Sections
+## Pages
 
-Sticky navbar, hero with parallax, About, filterable product catalogue, MRO/technical services, Why Choose Us, a full-width aviation showcase, and a validated contact/enquiry form with a success state.
+Home (hero + About), Products (full catalogue grid), Services (MRO/technical services + global supply network), Why Us (certifications, customers, a full-width aviation showcase), Contact, and Privacy Policy — all sharing a sticky navbar and footer.
 
 ## Running Locally
 
@@ -21,12 +20,10 @@ npm install
 npm run dev
 ```
 
-The dev server runs at `http://localhost:3000` (or via `netlify dev` on port 8888, which also emulates Netlify Forms).
+The dev server runs at `http://localhost:3000`.
 
 ## Build
 
 ```bash
 npm run build
 ```
-
-Netlify Forms submissions only work on a deployed site (Netlify's form-detection runs at deploy time), not in local dev.

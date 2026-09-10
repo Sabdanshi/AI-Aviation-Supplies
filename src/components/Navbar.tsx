@@ -1,73 +1,90 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
+import { Link, useLocation } from '@tanstack/react-router'
 import { Menu, Phone, X } from 'lucide-react'
 
+// useLayoutEffect warns during SSR (no DOM to lay out); fall back to
+// useEffect there since the browser-only correction below is a no-op anyway
+// until hydration.
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
+
 const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Products', href: '#products' },
-  { label: 'Services', href: '#services' },
-  { label: 'Why Us', href: '#why-us' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', to: '/' as const },
+  { label: 'About', to: '/' as const, hash: 'about' },
+  { label: 'Products', to: '/products' as const },
+  { label: 'Services', to: '/services' as const },
+  { label: 'Why Us', to: '/why-us' as const },
+  { label: 'Contact', to: '/contact' as const },
 ]
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
+  const isHome = pathname === '/'
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
-    onScroll()
+  useIsomorphicLayoutEffect(() => {
+    // On non-home routes `solid` is already forced true via `!isHome` below,
+    // so tracking scroll position there would only trigger wasted re-renders.
+    if (!isHome) return
+
+    // Correct synchronously before paint (not via the throttled/rAF path
+    // below) so a page loaded already scrolled — e.g. scrollRestoration on
+    // back/forward nav — never flashes the transparent navbar first.
+    setScrolled(window.scrollY > 24)
+
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 24)
+        ticking = false
+      })
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [isHome])
 
   const handleNavClick = () => setOpen(false)
+  const solid = scrolled || !isHome
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
+        solid
           ? 'bg-[#081b30]/95 backdrop-blur-md shadow-[0_8px_30px_rgba(5,15,30,0.35)] py-3'
           : 'bg-transparent py-5'
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-10">
-        <a href="#home" className="flex items-center gap-2.5 group">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#c9a24b]/60 text-[#c9a24b] transition-transform duration-300 group-hover:rotate-12">
-            <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
-              <path
-                d="M12 2L13.5 8.5L21 10L13.5 11.5L12 21L10.5 11.5L3 10L10.5 8.5L12 2Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-          <span className="font-display leading-tight">
-            <span className="block text-lg font-semibold tracking-wide text-white">Airlink</span>
-            <span className="block text-[10px] uppercase tracking-[0.25em] text-[#c9a24b]">
-              Aviation Spares
-            </span>
-          </span>
-        </a>
+        <Link to="/" className="flex items-center group">
+          <img
+            src="/images/logo-white.png"
+            alt="AI Aviation Supplies"
+            className="h-16 w-auto transition-transform duration-300 group-hover:scale-105 sm:h-20"
+          />
+        </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
           {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
+            <Link
+              key={link.label}
+              to={link.to}
+              hash={link.hash}
               className="text-sm font-medium text-white/80 transition-colors duration-200 hover:text-[#d9b968]"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <a
-          href="#contact"
+        <Link
+          to="/contact"
           className="hidden lg:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#c9a24b] to-[#d9b968] px-6 py-2.5 text-sm font-semibold text-[#081b30] shadow-lg shadow-[#c9a24b]/20 transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#c9a24b]/30 active:translate-y-0"
         >
           <Phone className="h-4 w-4" />
           Enquire Now
-        </a>
+        </Link>
 
         <button
           type="button"
@@ -86,23 +103,24 @@ export function Navbar() {
       >
         <nav className="mx-6 mt-4 flex flex-col gap-1 rounded-2xl border border-white/10 bg-[#081b30] p-4">
           {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
+            <Link
+              key={link.label}
+              to={link.to}
+              hash={link.hash}
               onClick={handleNavClick}
               className="rounded-lg px-3 py-2.5 text-sm font-medium text-white/85 transition-colors hover:bg-white/5 hover:text-[#d9b968]"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             onClick={handleNavClick}
             className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#c9a24b] to-[#d9b968] px-6 py-2.5 text-sm font-semibold text-[#081b30]"
           >
             <Phone className="h-4 w-4" />
             Enquire Now
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

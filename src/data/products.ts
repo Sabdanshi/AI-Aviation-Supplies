@@ -6,22 +6,12 @@ export interface Product {
   description: string
 }
 
-export const categories = [
-  'All',
-  'Spare Parts & Rotables',
-  'Ground Support & Tooling',
-  'Chemicals, Oils & Sealants',
-  'Cabin & Cleaning',
-  'Safety & PPE',
-] as const
-
 const products: Array<Product> = [
   {
     id: 1,
     name: 'Aircraft & Helicopter Spare Parts',
     category: 'Spare Parts & Rotables',
-    image:
-      'https://images.unsplash.com/photo-1610642372651-fe6e7bc8c635?q=80&w=1200&auto=format&fit=crop',
+    image: '/images/products/aircraft-spare-parts.jpg',
     description:
       'Certified spare parts sourced across A320 Family, A350, A380, B737, B777, B787, ATR and helicopter platforms.',
   },
@@ -29,8 +19,7 @@ const products: Array<Product> = [
     id: 2,
     name: 'Rotatable & Repairable Components',
     category: 'Spare Parts & Rotables',
-    image:
-      'https://images.unsplash.com/photo-1615037937471-c976a83a6b8a?q=80&w=1200&auto=format&fit=crop',
+    image: '/images/products/rotatable-repairable.jpg',
     description:
       'Fully traceable rotables and repairables backed by a counterfeit parts prevention program.',
   },
@@ -38,145 +27,129 @@ const products: Array<Product> = [
     id: 3,
     name: 'Bearings & Precision Components',
     category: 'Spare Parts & Rotables',
-    image:
-      'https://images.unsplash.com/photo-1565043666747-69f6646db940?q=80&w=1200&auto=format&fit=crop',
+    image: '/images/products/bearings-precision.jpg',
     description:
       'Precision bearings and components manufactured to strict aviation tolerances.',
   },
   {
     id: 4,
-    name: 'Electrical & Avionics Components',
-    category: 'Spare Parts & Rotables',
-    image:
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop',
-    description:
-      'Avionics and electrical components sourced from an extensive OEM and distributor network.',
-  },
-  {
-    id: 5,
-    name: 'Fasteners, Seals & Hardware',
-    category: 'Spare Parts & Rotables',
-    image:
-      'https://images.unsplash.com/photo-1589792923962-537704632910?q=80&w=1200&auto=format&fit=crop',
-    description:
-      'Fasteners, hardware, seals, O-rings and gaskets to keep every build on schedule.',
-  },
-  {
-    id: 6,
-    name: 'Ground Support Equipment (GSE)',
+    name: 'Aircraft Ground Support Equipment (GSE)',
     category: 'Ground Support & Tooling',
-    image:
-      'https://images.unsplash.com/photo-1583373834259-46cc92173cb7?q=80&w=1200&auto=format&fit=crop',
+    image: '/images/products/ground-support-equipment.jpg',
     description:
       'Aircraft ground support equipment engineered for daily line and hangar operations.',
   },
   {
-    id: 7,
+    id: 5,
     name: 'Special Tools & Test Equipment',
     category: 'Ground Support & Tooling',
-    image:
-      'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=1200&auto=format&fit=crop',
+    image: '/images/products/special-tools.jpg',
     description:
       'Specialised tooling and test equipment for MRO, line maintenance and defence platforms.',
   },
   {
-    id: 8,
+    id: 6,
     name: 'Engine Stands & Transportation Equipment',
     category: 'Ground Support & Tooling',
-    image:
-      'https://images.unsplash.com/photo-1544829885-87f5f0e0d5c2?q=80&w=1200&auto=format&fit=crop',
+    image: '/images/products/engine-stands-transport.jpg',
     description:
-      'Engine stands, jacks, lifting and transportation equipment rated for heavy MRO use.',
+      'Engine stands and transportation equipment rated for heavy MRO use, keeping large components moving safely.',
+  },
+  {
+    id: 7,
+    name: 'Jacks, Lifting & Maintenance Equipment',
+    category: 'Ground Support & Tooling',
+    image: '/images/products/jacks-lifting.jpg',
+    description:
+      'Jacks, lifting equipment and maintenance stands built for safe, heavy-duty hangar work.',
+  },
+  {
+    id: 8,
+    name: 'Hydraulic & Pneumatic Components',
+    category: 'Ground Support & Tooling',
+    image: '/images/products/hydraulic-pneumatic.jpg',
+    description:
+      'Hydraulic and pneumatic system components engineered to keep critical aircraft systems airworthy.',
   },
   {
     id: 9,
-    name: 'Hydraulic & Pneumatic Components',
-    category: 'Ground Support & Tooling',
-    image:
-      'https://images.unsplash.com/photo-1580983561371-7f4b242d8ec0?q=80&w=1200&auto=format&fit=crop',
+    name: 'Electrical & Avionics Components',
+    category: 'Spare Parts & Rotables',
+    image: '/images/products/avionics-electrical.jpg',
     description:
-      'Hydraulic fluids, pneumatic components and system parts to keep systems airworthy.',
+      'Avionics and electrical components sourced from an extensive OEM and distributor network.',
   },
   {
     id: 10,
-    name: 'Aviation Lubricants & Chemicals',
+    name: 'Fasteners & Hardware',
+    category: 'Spare Parts & Rotables',
+    image: '/images/products/fasteners-hardware.jpg',
+    description:
+      'Fasteners and hardware sourced to keep every build and turnaround on schedule.',
+  },
+  {
+    id: 11,
+    name: 'Seals, O-Rings & Gaskets',
+    category: 'Spare Parts & Rotables',
+    image: '/images/products/seals-orings-gaskets.jpg',
+    description:
+      'Seals, O-rings and gaskets sourced to exact specification for critical sealing applications.',
+  },
+  {
+    id: 12,
+    name: 'Lubricants, Greases & Aviation Chemicals',
     category: 'Chemicals, Oils & Sealants',
-    image:
-      'https://images.unsplash.com/photo-1620825141324-b840dfa2cd6a?q=80&w=1200&auto=format&fit=crop',
+    image: '/images/products/aviation-lubricants.jpg',
     description:
       'OEM-approved aviation lubricants, greases and corrosion preventive compounds.',
   },
   {
-    id: 11,
-    name: 'Sealants & Adhesives',
-    category: 'Chemicals, Oils & Sealants',
-    image:
-      'https://images.unsplash.com/photo-1581092918484-8313ade48417?q=80&w=1200&auto=format&fit=crop',
-    description:
-      'Fuel-tank and structural sealants and adhesives approved for airframe applications.',
-  },
-  {
-    id: 12,
-    name: 'Paint Shop & Surface Treatment Products',
-    category: 'Chemicals, Oils & Sealants',
-    image:
-      'https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?q=80&w=1200&auto=format&fit=crop',
-    description:
-      'AkzoNobel, PPG, Mankiewicz and NYCOTE-approved coatings for the aircraft paint shop.',
-  },
-  {
     id: 13,
-    name: 'Aircraft Chemicals & Disinfectants',
-    category: 'Chemicals, Oils & Sealants',
-    image:
-      'https://images.unsplash.com/photo-1584824388878-baa4d8f0c1ff?q=80&w=1200&auto=format&fit=crop',
+    name: 'Consumables & Expendables',
+    category: 'Safety & PPE',
+    image: '/images/products/consumables-expendables.jpg',
     description:
-      'Certified cabin, exterior and toilet-system cleaners approved by Boeing and Airbus.',
+      'Everyday consumables and expendables that keep hangar and line operations moving.',
   },
   {
     id: 14,
-    name: 'Cabin & Inflight Essentials',
-    category: 'Cabin & Cleaning',
-    image:
-      'https://images.unsplash.com/photo-1540339832862-474599807836?q=80&w=1200&auto=format&fit=crop',
-    description:
-      'Safety cards, sickness bags, pillows, blankets and lavatory consumables — customisable by aircraft type.',
-  },
-  {
-    id: 15,
-    name: 'Cabin & Carpet Cleaning Equipment',
-    category: 'Cabin & Cleaning',
-    image:
-      'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop',
-    description:
-      'Carpet cleaning machines, backpack vacuums and exterior wash equipment for turnaround crews.',
-  },
-  {
-    id: 16,
-    name: 'Janitorial & Material Handling',
-    category: 'Cabin & Cleaning',
-    image:
-      'https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=1200&auto=format&fit=crop',
-    description:
-      'Trolleys, carts and material handling equipment purpose-built for cabin and hangar logistics.',
-  },
-  {
-    id: 17,
     name: 'Safety Equipment & PPE',
     category: 'Safety & PPE',
-    image:
-      'https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?q=80&w=1200&auto=format&fit=crop',
+    image: '/images/products/safety-ppe.jpg',
     description:
       'Gloves, coveralls, high-visibility clothing and bio-hazard kits for hangar-floor safety.',
   },
   {
-    id: 18,
-    name: 'Consumables & Expendables',
-    category: 'Safety & PPE',
-    image:
-      'https://images.unsplash.com/photo-1581093458791-4a2a02b24e42?q=80&w=1200&auto=format&fit=crop',
+    id: 15,
+    name: 'Paint Shop & Surface Treatment Products',
+    category: 'Chemicals, Oils & Sealants',
+    image: '/images/products/paint-shop.jpg',
     description:
-      'Everyday consumables and expendables that keep hangar and line operations moving.',
+      'AkzoNobel, PPG, Mankiewicz and NYCOTE-approved coatings for the aircraft paint shop.',
+  },
+  {
+    id: 16,
+    name: 'Workshop & MRO Supplies',
+    category: 'Ground Support & Tooling',
+    image: '/images/products/workshop-mro-supplies.jpg',
+    description:
+      'General workshop and MRO supplies that keep maintenance teams equipped and on schedule.',
+  },
+  {
+    id: 17,
+    name: 'Documentation & Technical Publications',
+    category: 'Ground Support & Tooling',
+    image: '/images/products/documentation-publications.jpg',
+    description:
+      'Technical publications and documentation support for certified, traceable maintenance records.',
+  },
+  {
+    id: 18,
+    name: 'Packaging & Preservation Materials',
+    category: 'Ground Support & Tooling',
+    image: '/images/products/packaging-preservation.jpg',
+    description:
+      'Packaging and preservation materials that protect parts and components in transit and storage.',
   },
 ]
 

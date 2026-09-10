@@ -1,4 +1,6 @@
 import { createRouter } from '@tanstack/react-router'
+import { ErrorFallback } from '@/components/ErrorFallback'
+import { NotFound } from '@/components/NotFound'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
@@ -9,6 +11,8 @@ export const getRouter = () => {
     routeTree,
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
+    defaultNotFoundComponent: NotFound,
+    defaultErrorComponent: ErrorFallback,
   })
 
   return router

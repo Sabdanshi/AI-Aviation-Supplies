@@ -1,6 +1,6 @@
-@import "tailwindcss" source("../");
-
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss" source("../");
 
 :root {
   --navy-950: #050f1e;
@@ -56,10 +56,47 @@ code {
 .reveal-delay-4 { transition-delay: 0.32s; }
 .reveal-delay-5 { transition-delay: 0.4s; }
 
+/* Decorative aircraft flying across the hero on a slow, looping arc */
+@keyframes fly-across {
+  0% { transform: translate(-10vw, 8vh) rotate(3deg); opacity: 0; }
+  10% { opacity: 0.55; }
+  50% { transform: translate(45vw, -4vh) rotate(3deg); opacity: 0.55; }
+  90% { opacity: 0.55; }
+  100% { transform: translate(100vw, -16vh) rotate(3deg); opacity: 0; }
+}
+.fly-across {
+  animation: fly-across 16s ease-in-out infinite;
+}
+
+/* Slow rotating radar-style sweep, used as a decorative accent on dark sections */
+@keyframes radar-sweep {
+  to { transform: rotate(360deg); }
+}
+.radar-sweep {
+  animation: radar-sweep 10s linear infinite;
+}
+
+/* Fade/slide used when a route mounts, for a smoother page-to-page feel */
+@keyframes page-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page-fade-in {
+  animation: page-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
     transform: none;
+    transition: none;
+  }
+  .fly-across,
+  .radar-sweep,
+  .page-fade-in {
+    animation: none;
+  }
+  .hangar-door {
     transition: none;
   }
   html {

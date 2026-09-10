@@ -1,4 +1,5 @@
 import { useReveal } from '@/lib/useReveal'
+import { SectionHeading } from '@/components/SectionHeading'
 import {
   BadgeCheck,
   Leaf,
@@ -27,7 +28,7 @@ const REASONS = [
   {
     icon: Truck,
     title: 'Reliable supply chain',
-    description: 'Fast, dependable delivery across the UAE and India.',
+    description: 'Fast, dependable delivery across India and the UAE.',
   },
   {
     icon: Users,
@@ -52,18 +53,28 @@ export function WhyUs() {
       <div className="texture-grid pointer-events-none absolute inset-0 opacity-40" />
       <div className="absolute -left-32 top-1/3 h-80 w-80 rounded-full bg-[#c9a24b]/10 blur-3xl" />
       <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-[#123a63]/40 blur-3xl" />
+      <div
+        aria-hidden="true"
+        className="radar-sweep pointer-events-none absolute -right-24 -top-24 hidden h-96 w-96 rounded-full opacity-30 sm:block"
+        style={{
+          background:
+            'conic-gradient(from 0deg, transparent 0deg, rgba(201,162,75,0.55) 18deg, transparent 46deg)',
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-24 -top-24 hidden h-96 w-96 rounded-full border border-white/10 sm:block"
+      />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div
           ref={ref}
           className={`reveal mx-auto max-w-2xl text-center ${visible ? 'is-visible' : ''}`}
         >
-          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#d9b968]">
-            Why Choose Airlink
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-semibold text-white sm:text-4xl">
-            Built On Certified Quality &amp; Trust
-          </h2>
+          <SectionHeading
+            eyebrow="Why Choose AI Aviation Supplies"
+            title="Built On Certified Quality & Trust"
+          />
         </div>
 
         <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

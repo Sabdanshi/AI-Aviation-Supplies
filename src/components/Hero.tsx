@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { ArrowRight, ShieldCheck } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+import { ArrowRight, Plane, ShieldCheck } from 'lucide-react'
 
 export function Hero() {
   const imgRef = useRef<HTMLDivElement | null>(null)
@@ -33,12 +34,21 @@ export function Hero() {
           ref={imgRef}
           className="absolute inset-0 scale-[1.12] bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2400&auto=format&fit=crop')",
+            backgroundImage: "url('/images/misc/hero-wing.jpg')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050f1e]/80 via-[#050f1e]/75 to-[#050f1e]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#050f1e] via-[#050f1e]/40 to-transparent" />
+
+        <div
+          className="fly-across pointer-events-none absolute left-0 top-[18%] hidden text-white sm:block"
+          aria-hidden="true"
+        >
+          <div className="flex items-center gap-3">
+            <span className="h-px w-28 bg-gradient-to-r from-transparent via-white/50 to-white/70" />
+            <Plane className="h-5 w-5 rotate-45" />
+          </div>
+        </div>
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-28 pb-20 lg:px-10">
@@ -58,25 +68,19 @@ export function Hero() {
 
           <p className="reveal is-visible reveal-delay-1 mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
             From certified aviation chemicals and consumables to rotable
-            components and ground support equipment — Airlink delivers
+            components and ground support equipment — AI Aviation Supplies delivers
             certified, compliant supply-chain solutions to airlines, MROs,
-            and operators across the UAE, India and beyond.
+            and operators across India, the UAE and beyond.
           </p>
 
           <div className="reveal is-visible reveal-delay-2 mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="#products"
+            <Link
+              to="/products"
               className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#c9a24b] to-[#d9b968] px-7 py-3.5 text-sm font-semibold text-[#081b30] shadow-lg shadow-[#c9a24b]/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#c9a24b]/30"
             >
               Explore Products
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/10"
-            >
-              Contact Us
-            </a>
+            </Link>
           </div>
 
           <div className="reveal is-visible reveal-delay-3 mt-14 grid max-w-xl grid-cols-3 gap-6 border-t border-white/10 pt-8">
@@ -106,11 +110,6 @@ export function Hero() {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/40 sm:flex">
-        <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-        <span className="h-9 w-px animate-pulse bg-gradient-to-b from-white/60 to-transparent" />
       </div>
     </section>
   )
