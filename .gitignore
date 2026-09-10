@@ -6,6 +6,9 @@ dist
 # Local Netlify folder
 .netlify
 
+# TanStack Router codegen scratch dir
+.tanstack
+
 # Environment variables
 .env
 .env.local
