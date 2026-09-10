@@ -5,3 +5,36 @@
   command = "npm run dev"
   targetPort = 3000
   port = 8888
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    # script-src keeps 'unsafe-inline' deliberately: TanStack Start injects
+    # its OWN inline bootstrap scripts (hydration signaling + scroll
+    # restoration, both in the compiled router chunk) in addition to our GA
+    # snippet and the JSON-LD block below — all are subject to script-src,
+    # since CSP applies to every <script> tag regardless of its `type`.
+    # Tried a static SHA-256 hash allowlist instead (removing
+    # 'unsafe-inline') and verified in a real browser that it broke: the
+    # framework's hydration/scroll-restoration scripts have build-dependent
+    # content (route manifest, chunk data) that changes on every deploy, so
+    # their hashes can't be hardcoded here without going stale immediately.
+    # A per-request nonce (TanStack Start supports one via
+    # `router.options.ssr.nonce`) would fix this properly but needs
+    # server-side wiring to generate + thread a fresh nonce through every
+    # request — left as a follow-up rather than risking hydration breakage.
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com"
+
+# Several backdrop images are reused verbatim across route pairs (e.g.
+# jet-engine.jpg on /products and /why-us). Filenames aren't content-hashed,
+# so use a bounded cache (not "immutable") in case an image is ever swapped
+# at the same path again.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"

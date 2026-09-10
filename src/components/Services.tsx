@@ -1,5 +1,47 @@
 import { useReveal } from '@/lib/useReveal'
-import { Globe, PackageSearch, ShieldCheck, Timer, UserCheck } from 'lucide-react'
+import { SectionPhotoBackdrop } from '@/components/SectionPhotoBackdrop'
+import { SectionHeading } from '@/components/SectionHeading'
+import {
+  Building2,
+  Globe,
+  PackageSearch,
+  Plane,
+  Rocket,
+  ShieldCheck,
+  Timer,
+  UserCheck,
+} from 'lucide-react'
+
+const PLATFORM_GROUPS = [
+  {
+    icon: Plane,
+    title: 'Commercial aviation',
+    platforms: 'A320 Family | A350 | A380 | B737 | B777 | B787 | ATR',
+  },
+  {
+    icon: Building2,
+    title: 'Business aviation',
+    platforms: 'Gulfstream | Dassault Falcon | Bombardier | Embraer | Others',
+  },
+  {
+    icon: Rocket,
+    title: 'Helicopters',
+    platforms: 'Airbus Helicopters | Bell | Leonardo | Sikorsky | Others',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Defence & military aviation',
+    platforms: 'Fighters | Transport | Trainers | Helicopters | UAV Support',
+  },
+]
+
+const INDUSTRIES_SERVED = [
+  'Airlines',
+  'MROs & Maintenance Facilities',
+  'Helicopter Operators',
+  'Defence & Air Force',
+  'OEMs & Suppliers',
+]
 
 const CAPABILITIES = [
   {
@@ -38,24 +80,18 @@ export function Services() {
   const { ref, visible } = useReveal<HTMLDivElement>()
 
   return (
-    <section id="services" className="relative bg-[#f5f7fa] py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section id="services" className="relative overflow-hidden bg-[#f5f7fa] py-24 lg:py-32">
+      <SectionPhotoBackdrop image="/images/misc/mro-technician.jpg" fadeTo="#f5f7fa" priority />
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
         <div
           ref={ref}
           className={`reveal mx-auto max-w-2xl text-center ${visible ? 'is-visible' : ''}`}
         >
-          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c9a24b]">
-            MRO &amp; Technical Solutions
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-semibold text-[#081b30] sm:text-4xl">
-            Parts, Tools &amp; Technical Support
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-slate-600">
-            We provide reliable sourcing and supply solutions for aircraft
-            and helicopter maintenance, repair and overhaul requirements —
-            delivering quality parts, tools and equipment to keep operations
-            safe, efficient and compliant.
-          </p>
+          <SectionHeading
+            eyebrow="MRO & Technical Solutions"
+            title="Parts, Tools & Technical Support"
+            description="We provide reliable sourcing and supply solutions for aircraft and helicopter maintenance, repair and overhaul requirements — delivering quality parts, tools and equipment to keep operations safe, efficient and compliant."
+          />
         </div>
 
         <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
@@ -78,6 +114,49 @@ export function Services() {
               </p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-20 grid gap-12 lg:grid-cols-5">
+          <div className="lg:col-span-3">
+            <h3 className="font-display text-xl font-semibold text-[#081b30]">
+              Aircraft &amp; Helicopter Platforms We Support
+            </h3>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {PLATFORM_GROUPS.map((group) => (
+                <div
+                  key={group.title}
+                  className="rounded-2xl border border-slate-200 bg-white p-5"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <group.icon className="h-4 w-4 text-[#c9a24b]" />
+                    <p className="text-sm font-semibold text-[#081b30]">
+                      {group.title}
+                    </p>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-500">
+                    {group.platforms}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h3 className="font-display text-xl font-semibold text-[#081b30]">
+              Industries &amp; Customers We Serve
+            </h3>
+            <ul className="mt-6 space-y-3">
+              {INDUSTRIES_SERVED.map((industry) => (
+                <li
+                  key={industry}
+                  className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600"
+                >
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#c9a24b]" />
+                  {industry}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

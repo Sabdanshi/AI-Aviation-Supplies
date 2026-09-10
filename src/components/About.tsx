@@ -1,5 +1,8 @@
 import { useReveal } from '@/lib/useReveal'
 import { Globe2, Layers, ShieldCheck, Users } from 'lucide-react'
+import { SectionPhotoBackdrop } from '@/components/SectionPhotoBackdrop'
+import { SectionHeading } from '@/components/SectionHeading'
+import { COMPANY } from '@/data/company'
 
 const HIGHLIGHTS = [
   {
@@ -16,9 +19,8 @@ const HIGHLIGHTS = [
   },
   {
     icon: Globe2,
-    title: 'UAE & India Reach',
-    description:
-      'Headquartered in Abu Dhabi with representation extending into India.',
+    title: 'Global Reach',
+    description: `Headquartered in ${COMPANY.cityState}, with representation across the UAE, UK and Denmark.`,
   },
   {
     icon: Users,
@@ -33,17 +35,15 @@ export function About() {
 
   return (
     <section id="about" className="relative overflow-hidden bg-white py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+      <SectionPhotoBackdrop image="/images/misc/cockpit.jpg" height="220px" />
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
+        <div className="mb-16">
+          <SectionHeading eyebrow="Who We Are" title="About AI Aviation Supplies" />
+        </div>
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <div ref={ref} className={`reveal ${visible ? 'is-visible' : ''}`}>
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c9a24b]">
-              Who We Are
-            </span>
-            <h2 className="mt-4 font-display text-3xl font-semibold text-[#081b30] sm:text-4xl">
-              About Airlink
-            </h2>
-            <p className="mt-6 text-base leading-relaxed text-slate-600">
-              Airlink Airplanes Spare Parts Trading L.L.C. is a UAE-based
+            <p className="text-base leading-relaxed text-slate-600">
+              AI Aviation Supplies is an India-based
               aviation supply company delivering complete supply-chain
               solutions to airlines, MROs, ground handling teams and
               industrial operators worldwide.
@@ -55,7 +55,7 @@ export function About() {
               janitorial solutions — alongside our expansion into aircraft
               parts and rotables — all delivered with certified, eco-friendly
               and globally compliant materials, with representation
-              extending into India.
+              extending into the UAE, UK and Denmark.
             </p>
 
             <div className="mt-8 rounded-2xl border border-slate-200 bg-[#f5f7fa] p-5">

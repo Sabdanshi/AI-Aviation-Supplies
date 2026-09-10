@@ -1,32 +1,21 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { About } from '@/components/About'
-import { Contact } from '@/components/Contact'
-import { Footer } from '@/components/Footer'
 import { Hero } from '@/components/Hero'
-import { Navbar } from '@/components/Navbar'
-import { Products } from '@/components/Products'
-import { Services } from '@/components/Services'
-import { Showcase } from '@/components/Showcase'
-import { WhyUs } from '@/components/WhyUs'
+import { PageLayout } from '@/components/PageLayout'
+import { COMPANY } from '@/data/company'
 
 export const Route = createFileRoute('/')({
+  head: () => ({
+    links: [{ rel: 'canonical', href: `${COMPANY.siteUrl}/` }],
+  }),
   component: Home,
 })
 
 function Home() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Products />
-        <Services />
-        <WhyUs />
-        <Showcase />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <PageLayout>
+      <Hero />
+      <About />
+    </PageLayout>
   )
 }
